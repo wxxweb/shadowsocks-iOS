@@ -5,20 +5,20 @@
 //  Created by clowwindy on 2/16/13.
 //  Copyright (c) 2013 clowwindy. All rights reserved.
 //
-#import <Crashlytics/Crashlytics.h>
+//#import <Crashlytics/Crashlytics.h>
 
 #import "GZIP.h"
 #import "AppProxyCap.h"
 #import "SWBAppDelegate.h"
-
-#import "GCDWebServer.h"
+#import <GCDWebServer/GCDWebServer.h>
+#import <GCDWebServer/GCDWebServerDataResponse.h>
 #import "SWBViewController.h"
 #import "ShadowsocksRunner.h"
 
 #define kProxyModeKey @"proxy mode"
 
-int polipo_main(int argc, char **argv);
-void polipo_exit();
+int polipoMain(int argc, char **argv);
+void polipoExit();
 
 @implementation SWBAppDelegate {
     BOOL polipoRunning;
@@ -40,7 +40,7 @@ void polipo_exit();
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self updateProxyMode];
 
-    [Crashlytics startWithAPIKey:@"fa65e4ab45ef1c9c69682529bee0751cd22d5d80"];
+    //[Crashlytics startWithAPIKey:@"fa65e4ab45ef1c9c69682529bee0751cd22d5d80"];
 
     [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
 
@@ -178,7 +178,7 @@ void polipo_exit();
         NSLog(@"not running");
         return;
     }
-    polipo_exit();
+    polipoExit();
 }
 
 - (void) proxyHttpRunDisabled {
@@ -193,7 +193,7 @@ void polipo_exit();
             "proxyAddress=127.0.0.1",
             (char*)[[NSString stringWithFormat:@"proxyPort=%d", 8081] UTF8String],
         };
-        polipo_main(5, args);
+        polipoMain(5, args);
         NSLog(@"http proxy stop");
         polipoRunning = NO;
     }}
@@ -211,7 +211,7 @@ void polipo_exit();
             "proxyAddress=0.0.0.0",
             (char*)[[NSString stringWithFormat:@"proxyPort=%d", 8081] UTF8String],
         };
-        polipo_main(5, args);
+        polipoMain(5, args);
         NSLog(@"http proxy stop");
         polipoRunning = NO;
     }

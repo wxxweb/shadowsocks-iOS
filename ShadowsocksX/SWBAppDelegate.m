@@ -13,7 +13,7 @@
 #import "GCDWebServer.h"
 #import "ShadowsocksRunner.h"
 #import "ProfileManager.h"
-#import "AFNetworking.h"
+#import <AFNetworking/AFHTTPRequestOperation.h>
 
 #define kShadowsocksIsRunningKey @"ShadowsocksIsRunning"
 #define kShadowsocksRunningModeKey @"ShadowsocksMode"
