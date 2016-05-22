@@ -1,6 +1,0 @@
-[submodule "AppProxyCap"]
-	path = AppProxyCap
-	url = https://github.com/freewizard/AppProxyCap.git
-[submodule "iProxy"]
-	path = iProxy
-	url = https://github.com/clowwindy/iProxy.git
